@@ -25,11 +25,20 @@
 
 * 物件導向基礎概念
 
-* ......
+* Constructor, Deconstructor
+
+* Copy constructor
+    * double free problem
+    * 傳入物件參數時，對記憶體空間所做的處理，防止裡外兩邊同時指向一樣的空間
+
+* & (參照)
+* this-> 的用法
+* Overload
+
 <br />
 <br />
 
-> 自己目前進度: 看完10/08的課程
+> 自己目前進度: 看完10/15的課程
 
 > 不含作業與考試資源，單純複習用!
 
