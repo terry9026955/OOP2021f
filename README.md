@@ -1,12 +1,12 @@
-# <font color=#FF00FF>__OOP2021f__</font>
-## __This is NTUT OOP(Object Oriented Programming) Course__
+# __OOP2021f__
+## <font color=#FF00FF>__This is NTUT OOP(Object Oriented Programming) Course__</font>
 <br />
 
 ![Alt text](./NiuBi.jpg "實屬牛逼")
 
 <br />
 
-## *[MSTeams上課錄影](https://ntutcc.sharepoint.com/sites/msteams_4bbe51/Shared%20Documents/Forms/AllItems.aspx?ga=1&isAscending=true&id=%2Fsites%2Fmsteams%5F4bbe51%2FShared%20Documents%2FGeneral%2FRecordings&sortField=Modified)*
+## *[MSTeams上課錄影](https://youtube.com/playlist?list=PLjGrZCQlR0mB1aqG-_Xa_tugZWuxi9puZ)*
 
  <br/>
 
@@ -29,11 +29,11 @@
 <br />
 <br />
 
-> 目前只看到10/08的課程
+> 自己目前進度: 看完10/08的課程
 
-> 不含作業與考試資源，單純學習用!
+> 不含作業與考試資源，單純複習用!
 
-> 走一步是一步~
+> Week 10, Week 18 分別為期中期末考週
 
 <br/>
 
