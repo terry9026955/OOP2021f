@@ -1,4 +1,5 @@
 //bottom up method
+#include "math_vector.h"
 
 //return array
 //parameter are: n-dimensional vector(v[]), a real number
@@ -20,3 +21,15 @@ double* scalarMultiple(double v[], int dim, double a){
     }
     return u;   //回傳一個指向長度為dim的double array
 }
+
+
+//Overloading
+MathVector scalarMultiple(MathVector mv, double a){ //傳入mv(物件)，copy constructor被呼叫了，function內外的世界是分開來的
+    double *u = new double[mv.dimension()];   
+    for(int i = 0; i < mv.dimension(); i++){
+        u[i] = mv.at(i) * a;
+    }
+    MathVector result(mv.dimension(), u);  
+    return result;   //copy of result is returned
+}
+//Copy constructor不只在呼叫物件，甚至是回傳物件時都會呼叫到。

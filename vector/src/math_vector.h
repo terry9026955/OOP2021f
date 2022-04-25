@@ -17,6 +17,9 @@ public:
     }
     //Constructor
     MathVector(int dim, double* v){ //其實這邊v存的是一個address，其指向一個內容為{3, 4}的array
+        if(dim < 0){
+            throw std::string("undefined.");
+        }
         _dim = dim;
         _vec = new double[dim];
 
@@ -26,6 +29,34 @@ public:
        for(int i = 0; i < dim; i++){
            _vec[i] = v[i];
        }
+    }
+
+    //Copy constructor: 解決傳送建構子參數時的空間複製問題
+        //const: 傳進來的參數不能改動它，否則回傳error
+        //&: 
+    MathVector(const MathVector& v){    //這樣我length_test.h就不會有double free錯誤了
+    //因為是int，所以直接copy過來
+    this->_dim = v._dim;
+    
+    //因為是pointer，所以要new出新空間來複製
+    //_vec只是一個"地址"，我要的是這個地址指向的那個空間的"內容"，並複製一份新的來。
+    this->_vec = new double[_dim];
+    for(int i = 0; i < _dim; i++){
+        this->_vec[i] = v._vec[i];  //我自己_vec的第i個元素會等於外面傳進來那個的_vec第i個元素
+    }
+
+    /*  
+    在member function裡面是可以這樣直接呼叫私有參數的
+    因為v不能改，所以打下面這個會出錯! 
+    v._dim = 10;             
+    */
+
+
+    }
+
+    // Deconstructor
+    ~MathVector(){
+        delete [] _vec; //avoid memory leak
     }
 
     //Member function
@@ -41,6 +72,10 @@ public:
     //Getter
     double at(int index){
         return _vec[index];
+    }
+    //Getter
+    int dimension(){
+        return _dim;
     }
 
     //Setter
