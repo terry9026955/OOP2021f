@@ -5,7 +5,7 @@ TEST(Vector, MathVector){
     double v[2] = {3, 4};
     //宣告物件
     MathVector mv(dim, v);
-    ASSERT_NEAR(5, mv.length(), 0.01);  //(期望，statement, 差距)
+    ASSERT_NEAR(5, mv.length(), 0.01);              //  (期望，statement, 差距)
 }
 
 TEST(Vector, MathVectorIndex){
@@ -33,5 +33,5 @@ TEST(Vector, MathVectorSetException){
     int dim = 2;
     double v[2] = {3, 4};
     MathVector mv(dim, v);
-    ASSERT_THROW(mv.setIndex(2, 4), std::string);    //出錯的function擺第一個  
+    ASSERT_THROW(mv.setIndex(2, 4), std::string);    // 出錯的function擺第一個  
 }

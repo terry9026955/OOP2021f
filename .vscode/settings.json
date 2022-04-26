@@ -36,7 +36,8 @@
         "xstddef": "cpp",
         "xtr1common": "cpp",
         "xutility": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "functional": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
