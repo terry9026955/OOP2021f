@@ -1,3 +1,5 @@
+#ifndef MULTI_H
+#define MULTI_H
 //  Bottom up method
 #include "math_vector.h"
 
@@ -39,3 +41,5 @@ MathVector scalarMultiply(MathVector mv, double a){     //  傳入mv(物件)，c
 MathVector operator*(double a, MathVector mv){          //  當看到一個double和一個MathVector相乘時，會做以下的行為
     return scalarMultiply(mv, a);
 }
+
+#endif 
