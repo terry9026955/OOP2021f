@@ -35,19 +35,25 @@
 * Constructor, Deconstructor
 
 * Copy constructor
-    * 解決double free problem
-    * 傳入物件參數時，對記憶體空間所做的處理，防止裡外兩邊同時指向一樣的空間
+    * 以防你的class裡面有new的事情，解決double free problem
+    * 傳入物件參數時呼叫，對記憶體空間所做的處理，防止裡外兩邊同時指向一樣的空間
+    * Compiler做了Copy ellision(複製省略)的動作去加速，所以回傳物件時不會有copy
 
-* & (參照)
+* & (參照 / 參考 / 別名)
+    * 通常要"複製"就是代表說因為變數拿進來，你有可能會改動到變數的內容
+    * 但萬一你拿進來卻沒改，那"複製"就會變成一個overhead，避免Copy constructor
+    * Pass by reference
+    * 就是存取同一份記憶體位址與其內容，賦予其別名，裡面可以直接改動外面的內容
+    * 可加上const作保護，
 * this-> 的用法
 * Overload
 * Operator Overloading
-    * Copy ellision(複製省略)做加速
+    * 乘號與加號的練習
 
 <br />
 <br />
 
-> 自己目前進度: 看完10/18的課程
+> 自己目前進度: 看完10/22的第一節課程
 
 > 不含作業與考試資源，單純複習用!
 
