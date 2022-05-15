@@ -40,7 +40,7 @@
     * Compiler做了Copy ellision(複製省略)的動作去加速
         * 所以回傳物件時不會有copy
 
-* & (參照 / 參考 / 別名)
+* & Reference (參照 / 參考 / 別名)
     * 通常要"複製"就是代表說因為變數拿進來，你有可能會改動到變數的內容
     * 但萬一你拿進來卻沒改，那"複製"就會變成一個overhead
         * 避免Copy constructor
@@ -51,6 +51,12 @@
 * Overload
 * Operator Overloading
     * 乘號與加號的練習
+* EX: 
+    * this->_dim : "this" is a pointer, "->" 取用member function.
+    * (*this)._dim: "(*this)" 取出地址的實體，後面用 "."取用.
+* Class版本的Operator Overloading
+* Copy Assignment: 跟Copy Constructor很像
+* Refactor(重構): 把曾寫過的code重新改寫的動作，只改架構而已不改功能
 
 <br />
 <br />

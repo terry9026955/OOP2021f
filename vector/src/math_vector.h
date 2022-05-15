@@ -14,6 +14,15 @@ class MathVector{
 private:
     int _dim;
     double* _vec;  
+    //  Refactor(重構): 把曾寫過的code重新改寫的動作，改架構不改功能
+    void init(int dim, double* v){          // 把上面15、16行變數的內容變成外面的人傳進來的內容
+        this->_dim = dim;                           
+        this->_vec = new double[this->_dim];        
+                                                    
+        for(int i = 0; i < this->_dim; i++){
+            this->_vec[i] = v[i]; 
+        }             
+    }
 public:
     //  Default constructor
     MathVector(){
@@ -24,30 +33,41 @@ public:
         if(dim < 0){
             throw std::string("undefined.");
         }
+
+        init(dim, v);                       // 跟下面註解這段一樣
+        /*
         _dim = dim;
         _vec = new double[dim];
        for(int i = 0; i < dim; i++){        //  把傳進來的v的內容複製到_vec裡面
            _vec[i] = v[i];
        }
+       */
     }
 
     //Copy constructor: 解決傳送建構子參數時的空間複製問題。    (const: 傳進來的參數不能改動它，否則回傳error。 &: )
     MathVector(const MathVector& v){        //  這樣我length_test.h就不會有double free錯誤了
         //std::cout << "Copy is called" << _vec[0] << std::endl;  (這行要驗證說因為有copy elision的加速，所以return物件時不會再copy一次)
+        
+        init(v._dim, v._vec);                       // _dim或dimension()都可以，因為我在當前class裡面知道自己的private是什麼，縱使這個物件是被傳進來的也沒關係，因為是同家人
+
+        /* 這段剪掉放到private的 void init()
         this->_dim = v._dim;                //  因為是int，所以直接copy過來
         this->_vec = new double[_dim];      //  因為是pointer，所以要new出新空間來複製
                                             //  _vec只是一個"地址"，我要的是這個地址指向的那個空間的"內容"，並複製一份新的來。
         for(int i = 0; i < _dim; i++){
-            this->_vec[i] = v._vec[i];      //  我自己_vec的第i個元素會等於外面傳進來那個的_vec第i個元素
+            this->_vec[i] = v._vec[i];      //  我自己_vec的第i個元素會等於外面傳進來那個的_vec第i個元素 
         }
-    
+        */
                                             /*  
                                                 在member function裡面是可以這樣直接呼叫私有參數的
                                                 因為v不能改，所以打下面這個會出錯! 
                                                 v._dim = 10;    (X)         
                                             */
+    }
 
-
+    //Copy Assignment (肯定有回傳，叫constructor都沒回傳)
+    MathVector& operator=(const MathVector& v){     // 在做assignment這個"="時，不要用default(會跟constructor一樣記憶體複製一份)，不呼叫建構子節省些時間
+        init(v._dim, v._vec);
     }
 
     //  Deconstructor
@@ -66,11 +86,11 @@ public:
     }
 
     //  Getter
-    double at(int index){
+    double at(int index) const {    // 加上const保證
         return _vec[index];
     }
     //  Getter
-    int dimension(){
+    int dimension() const {         // 加上const保證
         return _dim;
     }
 
@@ -81,8 +101,17 @@ public:
         }
         _vec[index] = input;
     } 
+
+    MathVector operator+(const MathVector &v){    // 傳進來的v我不會改它，但風險是不知道dimension()、at()會不會改動它
+        double w[this->dimension()];              // 我自己的dim              
+        for(int i = 0; i < this->dimension(); i++){ 
+            w[i] = this->at(i) + v.at(i);         // 我呼叫到的function沒有保證const的話，會有風險，compiler會擋下來
+        }
+        return MathVector(this->dimension(), w);
+    }
 };
 
+    
 #endif 
 
                                             /*

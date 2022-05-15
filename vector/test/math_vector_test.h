@@ -1,5 +1,5 @@
 #include "../src/math_vector.h"
-#include "../src/add.h"
+//#include "../src/add.h"                           // 要確定呼叫到的是我要的函式
 
 TEST(Vector, MathVector){
     int dim = 2;
